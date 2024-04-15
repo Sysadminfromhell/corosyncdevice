@@ -10,7 +10,7 @@ RUN apt-get update \
 
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-#need some work for cleanup
+#need some work for password change (maybe some automatism or rando password)
 RUN echo 'root:passw0rd!' | chpasswd
 
 COPY supervisord.conf /etc/supervisord.conf
