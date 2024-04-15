@@ -6,8 +6,11 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get clean all
 
+#TODO: Cleaning up not needed files on base image to reduce size
+
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
+#need some work for cleanup
 RUN echo 'root:passw0rd!' | chpasswd
 
 COPY supervisord.conf /etc/supervisord.conf
