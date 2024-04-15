@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:12.5-slim
 
 MAINTAINER André Lüneburger <andre.lueneburger@safh.de>
 
