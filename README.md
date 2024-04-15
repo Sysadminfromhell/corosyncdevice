@@ -4,3 +4,5 @@ Is build there and tested on QNAP Docker (Container Station)
 
 Hint: Create volumes before you use the image so the storage is persistent. You can use the image also in a docker-compose which should work with a directory or volumes in the same directory.
 
+Created new Env-Argument for password, if not changed then the default root password is "Passw0rd!".
+
