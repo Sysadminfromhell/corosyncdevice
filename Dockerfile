@@ -18,7 +18,9 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 
 ENV container docker
 ENV passwd=Passw0rd!
-RUN echo 'root:$passwd' | chpasswd
+COPY Secretpassword /root/Secretpassword
+RUN sed -i 's/root:Passw0rd!/root:'$passwd'/' /root/Secretpassword
+RUN cat /root/Secretpassword | chpasswd
 
 COPY supervisord.conf /etc/supervisord.conf
 
