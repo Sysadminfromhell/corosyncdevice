@@ -6,3 +6,6 @@ Hint: Create volumes before you use the image so the storage is persistent. You 
 
 Created new Env-Argument for password, if not changed then the default root password is "Passw0rd!".
 
+You can choose between Ubuntu and Debian, both are tested on QNAP and work fine.
+
+A switch is not possible!
