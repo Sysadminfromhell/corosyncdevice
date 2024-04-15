@@ -12,14 +12,11 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y supervisor openssh-server corosync-qnetd \
     && apt-get -y autoremove \
     && apt-get clean all \
-    && rm -rf /var/lib/apt/lists/* /var/log/alternatives.log /var/log/apt/history.log /var/log/apt/term.log /var/log/dpkg.log
-
-#TODO: Cleaning up not needed files on base image to reduce size
+    && rm -rf /var/lib/apt/* /var/lib/dpkg/* /var/lib/cache/* /var/lib/log/* /var/log/*
 
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 ENV container docker
-#need some work for password change (maybe some automatism or rando password)
 ENV passwd=Passw0rd!
 RUN echo 'root:$passwd' | chpasswd
 
