@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.19
 
 MAINTAINER André Lüneburger <andre.lueneburger@safh.de>
 
@@ -9,7 +9,8 @@ LABEL website="https://github.com/Sysadminfromhell/corosyncdevice"
 
 RUN apk update \
     && apk upgrade \
-    && apk add supervisor openssh-server corosync
+    && apk add \
+    && apk add supervisor openssh-server corosync2
 RUN apk cache clean 
 RUN rm -rf /var/lib/apk/* /var/lib/dpkg/* /var/lib/cache/* /var/lib/log/* /var/log/*
 
