@@ -4,7 +4,7 @@ MAINTAINER André Lüneburger <andre.lueneburger@safh.de>
 
 LABEL description="Corosync Qdevice Network daemon"
 LABEL documentation="man:corosync-qnetd"
-LABEL version="1.0"
+LABEL version="1.1"
 LABEL website="https://github.com/Sysadminfromhell/corosyncdevice"
 
 RUN apt-get update \
