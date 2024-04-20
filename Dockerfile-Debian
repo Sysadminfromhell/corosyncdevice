@@ -28,9 +28,9 @@ HEALTHCHECK CMD corosync-qnetd-tool -s
 
 VOLUME [ "/run/sshd", "/etc/corosync", "/etc/ssh" ]
 
-EXPOSE 22
-EXPOSE 5403
+EXPOSE 22/tcp
+EXPOSE 5403/tcp
 
-STOPSIGNAL SIGRTMIN+3
+STOPSIGNAL SIGTERM
 
-CMD ["/usr/bin/supervisord", "-n", "-edebug"]
+CMD ["/usr/bin/supervisord"]
