@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-MAINTAINER André Lüneburger <andre.lueneburger@safh.de>
+LABEL maintaner="André Lüneburger <andre.lueneburger@safh.de>"
 
 LABEL description="Corosync Qdevice Network daemon"
 LABEL documentation="man:corosync-qnetd"
@@ -16,7 +16,7 @@ RUN apt-get update \
 
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-ENV container docker
+ENV container=docker
 ENV passwd=Passw0rd!
 COPY Secretpassword /root/Secretpassword
 RUN sed -i 's/root:Passw0rd!/root:'$passwd'/' /root/Secretpassword

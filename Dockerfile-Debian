@@ -21,6 +21,7 @@ ENV passwd=Passw0rd!
 COPY Secretpassword /root/Secretpassword
 RUN sed -i 's/root:Passw0rd!/root:'$passwd'/' /root/Secretpassword
 RUN cat /root/Secretpassword | chpasswd
+RUN rm -rf /root/Secretpassword
 
 COPY supervisord.conf /etc/supervisord.conf
 
