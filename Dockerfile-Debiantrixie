@@ -1,10 +1,10 @@
-FROM debian:stable-slim
+FROM debian:trixie-slim
 
 LABEL maintaner="André Lüneburger <andre.lueneburger@safh.de>"
 
 LABEL description="Corosync Qdevice Network daemon"
 LABEL documentation="man:corosync-qnetd"
-LABEL version="Debian stable-slim"
+LABEL version="Debian 13"
 LABEL website="https://github.com/Sysadminfromhell/corosyncdevice"
 
 RUN apt-get update \
@@ -34,4 +34,4 @@ EXPOSE 5403/tcp
 
 STOPSIGNAL SIGTERM
 
-CMD ["/usr/bin/supervisord", "-n", "-edebug"]
+CMD ["/usr/bin/supervisord"]
