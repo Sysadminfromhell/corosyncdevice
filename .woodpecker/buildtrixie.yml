@@ -6,7 +6,7 @@ when:
 
 steps:
 - name: publish
-  image: woodpeckerci/plugin-docker-buildx
+  image: woodpeckerci/plugin-docker-buildx:6
   settings:
     repo: safhdev/corosyncdevice
     platforms: linux/amd64,linux/arm64,linux/386,linux/armv7
