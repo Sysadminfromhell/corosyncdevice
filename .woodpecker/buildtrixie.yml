@@ -3,6 +3,7 @@ when:
     branch: main
   - event: cron
     cron: Daily
+  - event: manual
 
 steps:
 - name: publish
