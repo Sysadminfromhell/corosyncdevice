@@ -1,0 +1,18 @@
+when:
+  - event: push
+    branch: main
+  - event: cron
+    cron: Daily
+
+steps:
+- name: publish
+  image: woodpeckerci/plugin-docker-buildx
+  settings:
+    repo: safhdev/corosyncdevice
+    platforms: linux/amd64,linux/arm64/v8,linux/386,linux/amd64
+    tags: debiantrixie
+    dockerfile: Dockerfile-Debiantrixie
+    username:
+      from_secret: github_username
+    password:
+      from_secret: github_token
