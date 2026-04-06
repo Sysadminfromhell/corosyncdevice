@@ -5,6 +5,8 @@ when:
     cron: Daily
   - event: manual
 
+skip_clone: true
+
 steps:
 - name: publish
   image: woodpeckerci/plugin-docker-buildx
