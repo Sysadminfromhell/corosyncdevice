@@ -6,13 +6,14 @@ when:
 
 steps:
 - name: publish
-  image: woodpeckerci/plugin-docker-buildx:latest
+  image: woodpeckerci/plugin-docker-buildx
   settings:
     repo: safhdev/corosyncdevice
-    platforms: linux/amd64,linux/arm64/v8,linux/386,linux/amd64
+    platforms: linux/amd64,linux/arm64,linux/386,linux/armv7
     tags: debiantrixie
     dockerfile: Dockerfile-Debiantrixie
+    provenance: mode=max
     username:
-      from_secret: github_username
+      from_secret: dockerhub_username
     password:
-      from_secret: github_token
+      from_secret: dockerhub_token
