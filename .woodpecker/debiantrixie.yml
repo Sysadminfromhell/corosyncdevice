@@ -1,3 +1,10 @@
+when:
+  - event: push
+    branch: main
+  - event: cron
+    cron: weekly
+  - event: manual
+
 steps:
   - name: docker-build-and-push-debiantrixie
     image: woodpeckerci/plugin-docker-buildx:5.0.0
