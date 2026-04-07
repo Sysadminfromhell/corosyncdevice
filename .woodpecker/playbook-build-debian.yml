@@ -1,3 +1,12 @@
+matrix:
+  include:
+    - DOCKERFILE: Dockerfile-Debiantrixie
+      TAG: debiantrixie
+    - DOCKERFILE: Dockerfile-Debianbookworm
+      TAG: debianbookworm
+    - DOCKERFILE: Dockerfile-Debiantest
+      TAG: debiantest
+
 when:
   - event: push
     branch: main
@@ -6,7 +15,7 @@ when:
   - event: manual
 
 steps:
-  - name: docker-build-and-push-debiantrixie
+  - name: docker-build-and-push
     image: woodpeckerci/plugin-docker-buildx:5.0.0
     privileged: true
     settings:
@@ -16,82 +25,21 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
-
-      dockerfile: Dockerfile-Debiantrixie
+      dockerfile: ${DOCKERFILE}
       context: .
-
       platforms:
         - linux/amd64
         - linux/arm64
         - linux/386
         - linux/arm/v7
-
       tags:
-        - debiantrixie
-
+        - ${TAG}
       pull_image: true
       provenance: mode=max
       sbom: true
-
+      cache_images:
+        - safhdev/corosyncdevice:${TAG}-cache
       labels:
         - org.opencontainers.image.source=${CI_REPO_URL}
-
-  - name: docker-build-and-push-debianbookworm
-    image: woodpeckerci/plugin-docker-buildx:5.0.0
-    privileged: true
-    settings:
-      registry: https://index.docker.io/v1/
-      repo: safhdev/corosyncdevice
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-
-      dockerfile: Dockerfile-Debianbookworm
-      context: .
-
-      platforms:
-        - linux/amd64
-        - linux/arm64
-        - linux/386
-        - linux/arm/v7
-
-      tags:
-        - debianbookworm
-
-      pull_image: true
-      provenance: mode=max
-      sbom: true
-
-      labels:
-        - org.opencontainers.image.source=${CI_REPO_URL}
-
-  - name: docker-build-and-push-debiantest
-    image: woodpeckerci/plugin-docker-buildx:5.0.0
-    privileged: true
-    settings:
-      registry: https://index.docker.io/v1/
-      repo: safhdev/corosyncdevice
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-
-      dockerfile: Dockerfile-Debiantest
-      context: .
-
-      platforms:
-        - linux/amd64
-        - linux/arm64
-        - linux/386
-        - linux/arm/v7
-
-      tags:
-        - debiantest
-
-      pull_image: true
-      provenance: mode=max
-      sbom: true
-
-      labels:
-        - org.opencontainers.image.source=${CI_REPO_URL}
+        - org.opencontainers.image.revision=${CI_COMMIT_SHA}
+        - org.opencontainers.image.version=${CI_COMMIT_BRANCH}-${CI_PIPELINE_NUMBER}
