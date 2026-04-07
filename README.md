@@ -10,7 +10,9 @@ Will be updated once a week automatically.
 Here you can see the Pipeline Status:
 
 Manual: ![Manual badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=manual)
+
 Cron(Weekly): ![Weekly badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=cron)
+
 last push: ![Push badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=push)
 
 ## Usage
