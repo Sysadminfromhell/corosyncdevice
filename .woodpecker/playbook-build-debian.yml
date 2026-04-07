@@ -16,7 +16,7 @@ when:
 
 steps:
   - name: docker-build-and-push
-    image: woodpeckerci/plugin-docker-buildx:5.0.0
+    image: woodpeckerci/plugin-docker-buildx:6.0.0
     privileged: true
     settings:
       registry: https://index.docker.io/v1/
