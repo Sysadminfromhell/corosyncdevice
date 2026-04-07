@@ -5,6 +5,14 @@ The project was started and founded due to the restriction with proxmox that a w
 
 The Image or the dockerfile, if build yourself, creats a debian docker with qnet device working.
 
+## Now with Automatic builds!
+Will be updated once a week automatically.
+Here you can see the Pipeline Status:
+
+Manual: ![Manual badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=manual)
+Cron(Weekly): ![Weekly badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=cron)
+last push: ![Push badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=push)
+
 ## Usage
 The Docker can be pulled via Docker-Hub or self build with the Dockerfiles.
 
