@@ -1,0 +1,36 @@
+FROM alpine:edge
+
+LABEL maintaner="André Lüneburger <andre.lueneburger@safh.de>"
+
+LABEL description="Corosync Qdevice Network daemon"
+LABEL documentation="man:corosync-qnetd"
+LABEL version="Alpine Edge"
+LABEL website="https://github.com/Sysadminfromhell/corosyncdevice"
+
+RUN apk update \
+    && apk upgrade \
+    && apk add --repository http://dl-3.alpinelinux.org/alpine/edge/testing corosync \
+    && apk add openssh-server supervisor \
+    && rm -rf /var/cache/apk/* /var/lib/cache/* /var/lib/log/* /var/log/*
+
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+ENV container=docker
+ENV passwd=Passw0rd!
+COPY Secretpassword /root/Secretpassword
+RUN sed -i 's/root:Passw0rd!/root:'$passwd'/' /root/Secretpassword
+RUN cat /root/Secretpassword | chpasswd
+RUN rm -rf /root/Secretpassword
+
+COPY supervisord.conf /etc/supervisord.conf
+
+HEALTHCHECK CMD corosync-qnetd-tool -s
+
+VOLUME [ "/run/sshd", "/etc/corosync", "/etc/ssh" ]
+
+EXPOSE 22/tcp
+EXPOSE 5403/tcp
+
+STOPSIGNAL SIGTERM
+
+CMD ["/usr/bin/supervisord", "-n", "-edebug"]

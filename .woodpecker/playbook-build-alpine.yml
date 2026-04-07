@@ -1,0 +1,36 @@
+when:
+  - event: cron
+    cron: weekly
+  - event: manual
+
+steps:
+  - name: docker-build-and-push-alpine
+    image: woodpeckerci/plugin-docker-buildx:latest
+    privileged: true
+    settings:
+      registry: https://index.docker.io/v1/
+      repo: safhdev/corosyncdevice
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      dockerfile: Dockerfile-AlpineEdge
+      context: .
+      platforms:
+        - linux/amd64
+        - linux/arm64
+        - linux/386
+        - linux/arm/v7
+      tags:
+        - AlpineEdge
+      pull_image: true
+      provenance: mode=max
+      sbom: true
+      cache_images:
+        - safhdev/corosyncdevice:AlpineEdge-cache
+      buildkit_oci_max_parallelism: 2
+      buildkit_debug: true
+      labels:
+        - org.opencontainers.image.source=${CI_REPO_URL}
+        - org.opencontainers.image.revision=${CI_COMMIT_SHA}
+        - org.opencontainers.image.version=${CI_COMMIT_BRANCH}-${CI_PIPELINE_NUMBER}
