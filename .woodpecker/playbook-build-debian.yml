@@ -39,6 +39,8 @@ steps:
       sbom: true
       cache_images:
         - safhdev/corosyncdevice:${TAG}-cache
+      buildkit_oci_max_parallelism: 2
+      buildkit_debug: true
       labels:
         - org.opencontainers.image.source=${CI_REPO_URL}
         - org.opencontainers.image.revision=${CI_COMMIT_SHA}
