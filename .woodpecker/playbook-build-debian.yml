@@ -8,8 +8,6 @@ matrix:
       TAG: debiantest
 
 when:
-  - event: push
-    branch: main
   - event: cron
     cron: weekly
   - event: manual
