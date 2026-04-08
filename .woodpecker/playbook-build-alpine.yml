@@ -1,6 +1,6 @@
 when:
   - event: cron
-    cron: daily
+    cron: "Daily"
   - event: manual
 
 steps:
