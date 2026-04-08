@@ -9,7 +9,7 @@ matrix:
 
 when:
   - event: cron
-    cron: weekly
+    cron: daily
   - event: manual
 
 steps:
