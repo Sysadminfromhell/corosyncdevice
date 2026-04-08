@@ -11,9 +11,7 @@ Here you can see the Pipeline Status:
 
 Manual: ![Manual badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=manual)
 
-Cron(Weekly): ![Weekly badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=cron)
-
-last push: ![Push badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=push)
+Cron(Daily): ![Weekly badge](https://woodpecker.safh.de/api/badges/1/status.svg?events=cron)
 
 ## Usage
 The Docker can be pulled via Docker-Hub or self build with the Dockerfiles.
