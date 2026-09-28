@@ -9,7 +9,7 @@ matrix:
 
 when:
   - event: cron
-    cron: "Daily"
+    cron: "Weekly Monday"
   - event: manual
 
 steps:
